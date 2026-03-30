@@ -19,7 +19,7 @@ def init_page(title, layout, icon):
     return
 
 def get_shipdata(sheet):
-    app = xw.App(visible=False)
+    #app = xw.App(visible=False)
     readsheet = xw.Book('mydata.xlsx').sheets['ship']
     #dfShip = pd.DataFrame(readsheet.range('A1', 'B7').value,header=False)
 
@@ -29,7 +29,7 @@ def get_shipdata(sheet):
     #sheet = wb.sheets['ship']
     dfShip = readsheet['A1'].options(pd.DataFrame,index=False,expand='table').value  
     #wb.close()
-    app.quit()
+    #app.quit()
     return dfShip
 
 
