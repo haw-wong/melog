@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import xlwings as xw
 
 def init_page(title, layout, icon):
     st.set_page_config(page_title=title, layout=layout, page_icon=icon)
@@ -18,9 +19,13 @@ def init_page(title, layout, icon):
     return
 
 def get_shipdata(sheet):
-    dfShip = pd.read_excel("mydata.xlsx",sheet_name=sheet)
-    dfShip = dfShip[["Variable", "Value"]]
-    dfShip.columns = ["Parameter", "Value"]  
+    #dfShip = pd.read_excel("mydata.xlsx",sheet_name=sheet)
+    #dfShip = dfShip[["Variable", "Value"]]
+    #dfShip.columns = ["Parameter", "Value"]
+    app = xw.App(visible=False)
+    wb = xw.Book('mydata.xlsx')
+    sheet = wb.sheets['ship']
+    dfShip = df = sheet.range('A2:B7').options(pd.DataFrame, expand='table').value  
     return dfShip
 
 
