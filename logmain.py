@@ -19,27 +19,21 @@ def init_page(title, layout, icon):
     return
 
 def get_shipdata(sheet):
-    #dfShip = pd.read_excel("mydata.xlsx",sheet_name=sheet)
-    #dfShip = dfShip[["Variable", "Value"]]
-    #dfShip.columns = ["Parameter", "Value"]
     app = xw.App(visible=False)
     wb = xw.Book('mydata.xlsx')
     sheet = wb.sheets['ship']
-    dfShip = df = sheet.range('A2:B7').options(pd.DataFrame, expand='table').value  
+    dfShip = sheet['A1'].options(pd.DataFrame,index=False,expand='table').value  
+    wb.close()
+    app.quit()
     return dfShip
 
 
 init_page('Ship Logs','wide',':bulb:')
 tabs = ['Main', 'Deck', 'Engine', 'ORB-1','ORB-2','Cargo Record', 'Garbage', 'ODS', 'NoX', 'SoX']
 tabMain, tabDk, tabEn, tabOrb1, tabOrb2, tabCargo, tabGarbage, tabODS, tabNox, tabSoX = st.tabs(tabs)
-#shipname,imo,mmsi,stype,grt,dwt = get_shipdata("Sheet1")
-#dfShip = pd.read_excel("mydata.xlsx",sheet_name="ship")
-#dfShip = dfShip[["Variable", "Value"]]
-#dfShip.columns = ["Parameter", "Value"]
 dfShip = get_shipdata("ship")
 
 with st.sidebar:
     st.markdown(f"## :orange[Electronic Logs Application]", help="Click radio button to select")
     st.dataframe(dfShip, hide_index=True)
-    #shipname = dfShip.iloc[0]["Value"]
-    #st.markdown(f"#### :blue[Ship Name      :] :blue[{shipname}]")
+
