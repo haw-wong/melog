@@ -28,7 +28,7 @@ init_page('Ship Logs','wide',':bulb:')
 tabs = ['Main', 'Deck', 'Engine', 'ORB-1','ORB-2','Cargo Record', 'Garbage', 'ODS', 'NoX', 'SoX']
 tabMain, tabDk, tabEn, tabOrb1, tabOrb2, tabCargo, tabGarbage, tabODS, tabNox, tabSoX = st.tabs(tabs)
 #shipname,imo,mmsi,stype,grt,dwt = get_shipdata("Sheet1")
-dfShip = get_shipdata("Sheet1")
+dfShip = get_shipdata("ship")
 
 with st.sidebar:
     st.markdown(f"## :orange[Electronic Logs Application]", help="Click radio button to select")
