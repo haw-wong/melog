@@ -19,12 +19,13 @@ def init_page(title, layout, icon):
     return
 
 def get_shipdata(sheet):
-    with xw.App(visible=False) as app:
-        wb = xw.Book('mydata.xlsx')
-        sheet = wb.sheets['ship']
-        dfShip = sheet['A1'].options(pd.DataFrame,index=False,expand='table').value  
-        wb.close()
-        app.quit()
+    #with xw.App(visible=False) as app:
+    app = xw.App(visible=False)
+    wb = xw.Book('mydata.xlsx')
+    sheet = wb.sheets['ship']
+    dfShip = sheet['A1'].options(pd.DataFrame,index=False,expand='table').value  
+    wb.close()
+    #app.quit()
     return dfShip
 
 
